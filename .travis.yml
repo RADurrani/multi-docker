@@ -1,0 +1,27 @@
+sudo: required
+services:
+    - docker
+    
+before_install:
+    - docker build -t rizwan/docker-react-complex-client -f ./client/Dockerfile.dev ./client 
+#   - docker build -t rizwan/docker-react-complex-test2 -f ./client/Dockerfile.dev ./client 
+
+script:
+    - docker run rizwan/docker-react-complex-client npm run test -- --coverage
+# can have multiple
+    
+after_success:
+    - docker build -t rizwan/multi-client ./client
+    - docker build -t rizwan/multi-nginx ./nginx
+    - docker build -t rizwan/multi-server ./server
+    - docker build -t rizwan/multi-worker ./worker
+
+# log into docker
+    - echo "$DOCKER_PASSWORD" : docker login -u "$DOCKER_ID" --pasword-stdin
+# push images to docker hub
+
+    - docker push rizwan/multi-client
+    - docker push rizwan/multi-nginx 
+    - docker push rizwan/multi-server
+    - docker push rizwan/multi-worker
+    
