@@ -20,8 +20,8 @@ after_success:
     - echo "$DOCKER_PASSWORD" : docker login -u "$DOCKER_ID" --pasword-stdin
 # push images to docker hub
 
-    - docker push rizwan/multi-client
-    - docker push rizwan/multi-nginx 
-    - docker push rizwan/multi-server
-    - docker push rizwan/multi-worker
+    - docker push radurrani/repo:rizwan/multi-client
+    - docker push radurrani/repo:rizwan/multi-nginx 
+    - docker push radurrani/repo:rizwan/multi-server
+    - docker push radurrani/repo:rizwan/multi-worker
     
