@@ -11,17 +11,17 @@ script:
 # can have multiple
     
 after_success:
-    - docker build -t rizwan/multi-client ./client
-    - docker build -t rizwan/multi-nginx ./nginx
-    - docker build -t rizwan/multi-server ./server
-    - docker build -t rizwan/multi-worker ./worker
+    - docker build -t radurrani/multi-client ./client
+    - docker build -t radurrani/multi-nginx ./nginx
+    - docker build -t radurrani/multi-server ./server
+    - docker build -t radurrani/multi-worker ./worker
 
 # log into docker
     - echo "$DOCKER_PASSWORD" : docker login -u "$DOCKER_ID" --pasword-stdin
 # push images to docker hub
 
-    - docker push radurrani/repo:rizwan/multi-client
-    - docker push radurrani/repo:rizwan/multi-nginx 
-    - docker push radurrani/repo:rizwan/multi-server
-    - docker push radurrani/repo:rizwan/multi-worker
+    - docker push radurrani/multi-client
+    - docker push radurrani/multi-nginx 
+    - docker push radurrani/multi-server
+    - docker push radurrani/multi-worker
     
